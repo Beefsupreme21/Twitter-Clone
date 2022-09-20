@@ -17,12 +17,13 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->firstName(),
-            'handle' => fake()->firstName(),
+            'user_id' => fake()->numberBetween(1,10),
             'replies' => fake()->numberBetween(1,20),
             'retweets' => fake()->numberBetween(1,20),
             'likes' => fake()->numberBetween(1,20),
             'content' => fake()->paragraph(),
+            'created_at' => now(),
         ];
     }
 }
+

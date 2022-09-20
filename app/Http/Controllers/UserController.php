@@ -20,13 +20,10 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        // Hash Password
         $formFields['password'] = bcrypt($formFields['password']);
 
-        // Create User
         $user = User::create($formFields);
 
-        // Login
         auth()->login($user);
 
         return redirect('/')->with('message', 'User created and logged in');

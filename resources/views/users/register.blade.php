@@ -21,11 +21,9 @@
             .hover-background {
                 background-color: #2d3741;
             }
-
             .main-font {
                 font-family: 'Segoe UI';
             }
-
         </style>
     </head>
 

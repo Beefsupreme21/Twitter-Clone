@@ -15,18 +15,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('handle');
-
+            $table->foreignId('user_id');
+            $table->text('content');
             $table->integer('replies');
             $table->integer('retweets');
             $table->integer('likes');
-
-            $table->text('content');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
-
-
         });
     }
 
