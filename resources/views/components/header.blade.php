@@ -136,7 +136,7 @@
             <div class="flex">
                 <div>
                     <div class="w-12 rounded-full img-background">
-                        <img src="{{asset('images/profile-test.jpg')}}" class="rounded-full w-12" alt="">
+                        {{-- <img src="{{auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('images/profile-test.jpg')}}" class="rounded-full w-12" alt=""> --}}
                     </div>
                 </div>
                 <div class="pl-3 hidden xl:block">
@@ -156,10 +156,5 @@
         </div>
 
     </div>
-
-
-
-
-
 
 </header>

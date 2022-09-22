@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->text('content');
-            $table->integer('replies');
-            $table->integer('retweets');
-            $table->integer('likes');
+            $table->integer('replies')->default('0');
+            $table->integer('retweets')->default('0');
+            $table->integer('likes')->default('0');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

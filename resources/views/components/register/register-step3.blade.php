@@ -1,11 +1,11 @@
-<div class="pb-6">
+<div class="pl-6 pt-4 pb-6 flex">
     <button>
-        <a href="/"><i class="fa fa-close pr-11"></i></a>
+        <a href="/"><i class="fa fa-close fa-lg"></i></a>
     </button>
-    <span>Step 3 of 4</span>
+    <span class="pl-8 font-bold text-lg">Step 3 of 4</span>
 </div>
 
-<div class="w-4/5 mx-auto flex flex-col justify-between h-[540px]">
+<div class="w-4/5 mx-auto flex flex-col justify-between h-[500px]">
     <div>
 
         <header class="mb-6">
@@ -26,6 +26,18 @@
                 <p class="text-red-500 text-sm mt-1">{{$message}}</p>
             @enderror
         </div>
+
+        <div class="mb-2">
+            <input
+                type="text"
+                class="bg-black border border-gray-800 rounded p-4 w-full"
+                name="handle"
+                placeholder="handle"
+            />
+            @error('handle')
+                <p class="text-red-500 text-sm mt-1">{{$message}}</p>
+            @enderror
+        </div>
     </div>
 
     <div>
@@ -43,7 +55,7 @@
             <p class="text-gray-500">
                 Don't have an account?
                 <a href="/login" class="text-cyan-600">
-                    Next
+                    Sign up
                 </a>
             </p>
         </div>

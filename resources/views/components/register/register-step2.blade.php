@@ -1,8 +1,8 @@
-<div class="pb-6">
+<div class="pl-6 pt-4 pb-6 flex">
     <button>
-        <a href="/"><i class="fa fa-close pr-11"></i></a>
-    </button>    
-    <span>Step 2 of 4</span>
+        <a href="/"><i class="fa fa-close fa-lg"></i></a>
+    </button>
+    <span class="pl-8 font-bold text-lg">Step 2 of 4</span>
 </div>
 
 <div class="w-4/5 mx-auto flex flex-col justify-between h-[540px]">
@@ -14,7 +14,7 @@
         </header>
     
     
-        {{-- <div class="mb-6">
+        <div class="mb-6">
             <input
                 type="text"
                 class="bg-black border border-gray-800 rounded p-4 w-full"
@@ -26,9 +26,9 @@
             @error('name')
                 <p class="text-red-500 text-sm mt-1">{{$message}}</p>
             @enderror
-        </div> --}}
+        </div>
 
-        {{-- <div class="mb-6">
+        <div class="mb-6">
             <input
                 type="text"
                 class="bg-black border border-gray-800 rounded p-4 w-full"
@@ -40,7 +40,7 @@
             @error('email')
                 <p class="text-red-500 text-sm mt-1">{{$message}}</p>
             @enderror
-        </div> --}}
+        </div>
     
         <div class="mb-2">
             <input

@@ -31,7 +31,7 @@
 
         <div class="bg-black rounded-2xl mx-auto max-w-[600px] h-[600px] md:mt-24">
 
-            <form method="POST" action="/users">
+            <form method="POST" action="/users" enctype="multipart/form-data">
             @csrf
 
                 <div x-data="{ registerStep: 'registerStep1' }">

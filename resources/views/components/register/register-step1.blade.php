@@ -1,8 +1,8 @@
-<div class="pb-6">
+<div class="pl-6 pt-4 pb-6 flex">
     <button>
-        <a href="/"><i class="fa fa-close pr-11"></i></a>
+        <a href="/"><i class="fa fa-close fa-lg"></i></a>
     </button>
-    <span>Step 1 of 4</span>
+    <span class="pl-8 font-bold text-lg">Step 1 of 4</span>
 </div>
 
 <div class="w-4/5 mx-auto flex flex-col justify-between h-[540px]">
@@ -38,18 +38,18 @@
             @enderror
         </div>
 
-        <div>
+        <div class="pt-8">
             <p>Date of birth</p>
-            <p>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
+            <p class="pt-2 text-sm text-slate-400">This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
         </div>
     </div>
 
     <div>
-        <div class="mb-6">
+        <div class="mb-8">
             <button             
                 @click="registerStep = 'registerStep2'"
                 @click.prevent
-                class="bg-white rounded py-2 px-4 text-black w-full rounded-3xl font-bold">
+                class="bg-white rounded py-3 px-4 text-black w-full rounded-3xl font-bold">
                     Next
             </button>
         </div>
