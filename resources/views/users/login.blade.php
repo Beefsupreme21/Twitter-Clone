@@ -30,7 +30,7 @@
 
     <body class="main-background text-white m-auto main-font ">
 
-        <div class="bg-black p-10 rounded-lg mx-auto max-w-[600px] h-[600px] mt-24">
+        <div class="bg-black rounded-2xl mx-auto max-w-[600px] h-[600px] md:mt-24">
 
             <form method="POST" action="/users/authenticate">
             @csrf

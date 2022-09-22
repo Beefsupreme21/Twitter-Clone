@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Twitter Clone</title>
-        <link rel = "icon" href = 
-"https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png" 
-        type = "image/x-icon">
+        <link rel = "icon" 
+              href = "https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png" 
+              type = "image/x-icon">
 
         <img  class="rounded-full w-12" alt="">
 
