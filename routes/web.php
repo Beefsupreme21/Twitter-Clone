@@ -19,11 +19,14 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 Route::get('/posts', [PostsController::class, 'index']);
-Route::post('/posts', [PostsController::class, 'store']);
+Route::post('/', [PostsController::class, 'store']);
 Route::get('/posts/create', [PostsController::class, 'create']);
 Route::get('/posts/{post}/edit', [PostsController::class, 'edit']);
 Route::put('/posts/{post}', [PostsController::class, 'update']);
 Route::delete('/posts/{post}', [PostsController::class, 'destroy']);
+
+Route::get('/posts/{post}', [PostsController::class, 'show']);
+
 
 Route::get('/{user:name}', function (User $user) {
     return view('posts.index', [
