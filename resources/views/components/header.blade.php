@@ -93,11 +93,13 @@
                 </div>
             </a>
 
-            @auth
 
-            <span>Welcome {{auth()->user()->name}}</span>
+        </div>
+
+        @auth
 
 
+        <div>
             <a href="/">
                 <div>
                     <form action="/logout" method="POST">
@@ -109,52 +111,50 @@
                             +
                         </button> --}}
                     </form>
-
-    
-
                 </div>
             </a>
 
-
-            @else
-            <a href="/login">
-                <div>
-                    <button class="hidden bg-black text-white font-bold mt-4 py-3 px-12 rounded-full xl:block hover:bg-blue-500">
-                        Login/Register
-                    </button>
+            <div class="text-white py-5 flex justify-between items-center hover:bg-slate-700">
+                <div class="flex">
+                    <div>
+                        <div class="w-12 rounded-full img-background">
+                            <img src="{{auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('images/profile-test.jpg')}}" class="rounded-full w-12" alt="">
+                        </div>
+                    </div>
+                    <div class="pl-3 hidden xl:block">
+                        <p class="font-bold">{{ auth()->user()->name }}</p>
+                        <div class="flex text-slate-400">
+                            <p>@</p>
+                            <p>{{ auth()->user()->handle }}</p>
+                        </div>
+                    </div>
+                </div>
     
-                    <button class="bg-blue-500 mt-4 p-2 rounded-full xl:hidden">
-                        +        
-                    </button>
+                <div class="pr-4 hidden xl:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                    </svg>                  
                 </div>
-            </a>
-
-            @endauth
-        </div>
-
-        <div class="text-white py-5 flex justify-between items-center hover:bg-slate-700">
-            <div class="flex">
-                <div>
-                    <div class="w-12 rounded-full img-background">
-                        {{-- <img src="{{auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('images/profile-test.jpg')}}" class="rounded-full w-12" alt=""> --}}
-                    </div>
-                </div>
-                <div class="pl-3 hidden xl:block">
-                    <p class="font-bold">Barack Obama</p>
-                    <div class="flex text-slate-400">
-                        <p>@</p>
-                        <p>BarackObama</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pr-4 hidden xl:block">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                </svg>                  
             </div>
         </div>
 
+
+        @else
+        <a href="/login">
+            <div class="mb-6">
+                <button class="hidden bg-black text-xl font-bold py-3 px-10 rounded-full xl:block hover:bg-green-700">
+                    Login/Register
+                </button>
+
+                <button class="bg-blue-500 mt-4 p-2 rounded-full xl:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>              
+                </button>
+            </div>
+        </a>
+
+        @endauth
     </div>
 
 </header>
