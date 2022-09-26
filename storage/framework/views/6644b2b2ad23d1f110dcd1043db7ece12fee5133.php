@@ -37,6 +37,13 @@
         </div>
     </div>
 
+    <div class="flex mb-4">
+        <div class="border-b border-gray-800 mb-4 w-full"></div>
+        <pre class="relative bottom-1"> or </pre>
+        <div class="border-b border-gray-800 mb-4 w-full"></div>
+
+    </div>
+
     <div class="mb-6">
         <input
             type="text"

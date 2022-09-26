@@ -1,0 +1,29 @@
+.main-background {
+    background-color: #15202B; 
+}
+
+.hover-background {
+    background-color: #2d3741;
+}
+
+.main-font {
+    font-family: 'Segoe UI';
+}
+
+.search-background {
+    background-color: #273340; 
+}
+
+.whats-happening-background {
+    background-color: #1E2732;
+}
+
+.custom-checkbox-input {
+    display: none;
+}
+
+.custom-checkbox-text {
+    cursor: pointer;
+}
+
+[x-cloak] { display: none !important; }

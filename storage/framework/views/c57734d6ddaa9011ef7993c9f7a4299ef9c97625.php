@@ -1,15 +1,5 @@
-<style>
-    .search-background {
-        background-color: #273340; 
-    }
-
-    .whats-happening-background {
-        background-color: #1E2732;
-    }
-</style>
-
 <div class="mx-6 mt-2 lg:max-w-[350px] xl:w-[350px] sticky top-2">
-    <form action="#" method="POST">
+    <form action="/posts/">
         <?php echo csrf_field(); ?>
         <div class="relative">
             <div class="absolute top-4 left-3">
@@ -17,10 +7,9 @@
             </div>
             <input
                 type="text"
-                name="searchQuery"
+                name="search"
                 class="search-background text-xl text-white py-3 pl-12 rounded-full w-full"
                 placeholder="Search Twitter"
-                value="<?php echo e(request('searchQuery') ?? null); ?>"
             />
         </div>
     </form>
@@ -43,12 +32,10 @@
                 <p class="text-slate-400 text-sm">Queen Elizabeth II</p>
                 <p class="font-bold text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, harum.</p>
             </div>
-
-
         </div>
+
         <div class="hover:bg-slate-700 p-4">
             <a href="#" class=" text-cyan-600 ">Show more</a>
-
         </div>
 
     </div>
@@ -73,7 +60,7 @@
                         </svg>
                     </div>
 
-                    <div class="flex text-slate-400">
+                    <div class="flex text-slate-400 leading-none">
                         <p>@</p>
                         <p>tonyhawk</p>
                     </div>
@@ -96,7 +83,7 @@
                 </div>
                 <div class="pl-3">
                     <p class="font-bold">Barack Obama</p>
-                    <div class="flex text-slate-400">
+                    <div class="flex text-slate-400 leading-none">
                         <p>@</p>
                         <p>BarackObama</p>
                     </div>
@@ -118,10 +105,10 @@
                     </div>
                 </div>
                 <div class="pl-3">
-                    <p class="font-bold">Barack Obama</p>
-                    <div class="flex text-slate-400">
+                    <p class="font-bold">Sean Evans</p>
+                    <div class="flex text-slate-400 leading-none">
                         <p>@</p>
-                        <p>BarackObama</p>
+                        <p>Sean Evans</p>
                     </div>
                 </div>
             </div>

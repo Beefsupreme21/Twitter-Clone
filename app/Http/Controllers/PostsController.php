@@ -10,7 +10,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->filter(request(['search']));
 
         return view('posts.index', [
             'posts' => $posts

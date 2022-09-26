@@ -23,11 +23,19 @@ class User extends Authenticatable
         'password',
         'handle',
         'image',
+        'verified',
     ];
 
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function scopeFilter($query, array $filters) {
+
+        if($filters['search'] ?? false) {
+            $query->where('name', 'like', '%' . request('search') . '%');
+        }
     }
 
     /**
