@@ -8,8 +8,14 @@ use App\Http\Controllers\PostsController;
 
 
 Route::get('/', function () {
-    $posts = Post::all();
+
+    $posts = Post::latest()->get();
+
     return view('posts.index', ['posts' => $posts]);
+});
+
+Route::get('/test', function () {
+    return view('test');
 });
 
 Route::get('/register', [UserController::class, 'create']);
@@ -33,3 +39,4 @@ Route::get('/{user:name}', function (User $user) {
         'posts' => $user->posts
     ]);
 });
+

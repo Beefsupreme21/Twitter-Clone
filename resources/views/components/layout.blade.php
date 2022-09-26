@@ -14,20 +14,8 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://kit.fontawesome.com/19ab508515.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}" />
 
-        <style>
-            .main-background {
-                background-color: #15202B; 
-            }
-            .hover-background {
-                background-color: #2d3741;
-            }
-
-            .main-font {
-                font-family: 'Segoe UI';
-            }
-
-        </style>
     </head>
 
     <body class="main-background m-auto xl:w-[1265px] main-font">

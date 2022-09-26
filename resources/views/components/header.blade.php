@@ -17,7 +17,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5" />
                     </svg>
-                    
                     <p class="pl-4 hidden xl:block">Explore</p>
                 </div>
             </a>
@@ -54,7 +53,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                     </svg>
-                    
                     <p class="pl-4 hidden xl:block">Lists</p>
                 </div>
             </a>
@@ -64,7 +62,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
-                    
                     <p class="pl-4 hidden xl:block">Profile</p>
                 </div>
             </a>
@@ -74,7 +71,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    
                     <p class="pl-4 hidden xl:block">More</p>
                 </div>
             </a>
@@ -92,12 +88,9 @@
                     </button>
                 </div>
             </a>
-
-
         </div>
 
         @auth
-
 
         <div>
             <a href="/">
@@ -107,9 +100,11 @@
                         <button type="submit" class="hidden bg-black text-white font-bold mt-4 py-3 px-12 rounded-full xl:block hover:bg-blue-500">
                             Sign Out
                         </button>
-                        {{-- <button class="bg-blue-500 mt-4 p-2 rounded-full xl:hidden">
-                            +
-                        </button> --}}
+                        <button class="bg-black mt-4 p-2 rounded-full xl:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>              
+                        </button>
                     </form>
                 </div>
             </a>
@@ -138,8 +133,8 @@
             </div>
         </div>
 
-
         @else
+
         <a href="/login">
             <div class="mb-6">
                 <button class="hidden bg-black text-xl font-bold py-3 px-10 rounded-full xl:block hover:bg-green-700">
@@ -155,6 +150,7 @@
         </a>
 
         @endauth
+
     </div>
 
 </header>

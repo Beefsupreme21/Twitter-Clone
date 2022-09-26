@@ -44,9 +44,7 @@
 
         <article class="border-b border-x border-gray-700 px-3 py-3 text-white text-base">
 
-
             <div class="px-2">
-                
                 <a href="/posts/<?php echo e($post->id); ?>">
                     <p class="text-2xl"><?php echo e($post->content); ?></p>
                 </a>
@@ -56,7 +54,6 @@
             <div class="border-y border-gray-700">
                 <p class="py-3"><?php echo e($post->likes); ?><span> Likes</span></p>
             </div>
-
 
             <div class="flex justify-around py-3 px-6 text-slate-400">
                 <div class="flex hover:text-cyan-500">
@@ -87,6 +84,7 @@
             <div class="border-y border-gray-700">
                 <p class="py-3">Tweet your reply</p>
             </div>
+            
         </article>
     </div>
     
