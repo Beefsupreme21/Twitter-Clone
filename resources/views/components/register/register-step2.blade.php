@@ -14,7 +14,7 @@
         </header>
     
     
-        <div class="mb-6">
+        {{-- <div class="mb-6">
             <input
                 type="text"
                 class="bg-black border border-gray-800 rounded p-4 w-full"
@@ -52,7 +52,7 @@
             @error('dob')
                 <p class="text-red-500 text-sm mt-1">{{$message}}</p>
             @enderror
-        </div>
+        </div> --}}
 
     </div>
 

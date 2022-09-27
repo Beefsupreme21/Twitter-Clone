@@ -1,7 +1,7 @@
 <header class="sticky top-0 h-screen">
     <div class="text-white flex flex-col px-3 justify-between m-auto" style="height:100vh">
         <div class="text-xl pt-4 xl:items-start">
-            <div class="fa-brands fa-twitter fa-xl mb-6 hover:text-gray-500"></div>
+            <div class="fa-brands fa-twitter fa-xl mb-6 pl-2 hover:text-gray-500"></div>
                 
             <a href="/">
                 <div class="flex py-2 pl-2 pr-2 xl:pr-8 mb-2 items-center rounded-full hover:bg-slate-700">
@@ -56,8 +56,10 @@
                     <p class="pl-4 hidden xl:block">Lists</p>
                 </div>
             </a>
+
+            @auth
     
-            <a href="#">
+            <a href="/users/{{ auth()->user()->id }}/edit">
                 <div class="flex py-2 pl-2 pr-2 xl:pr-8 mb-2 items-center rounded-full hover:bg-slate-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -65,6 +67,19 @@
                     <p class="pl-4 hidden xl:block">Profile</p>
                 </div>
             </a>
+
+            @else
+
+            <a href="/login">
+                <div class="flex py-2 pl-2 pr-2 xl:pr-8 mb-2 items-center rounded-full hover:bg-slate-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                    <p class="pl-4 hidden xl:block">Profile</p>
+                </div>
+            </a>
+
+            @endauth
     
             <a href="#">
                 <div class="flex py-2 pl-2 pr-2 xl:pr-8 mb-2 items-center rounded-full hover:bg-slate-700">

@@ -1,15 +1,3 @@
-<style>
-    .custom-checkbox-input {
-        display: none;
-    }
-
-    .custom-checkbox-text {
-        cursor: pointer;
-    }
-
-    [x-cloak] { display: none !important; }
-</style>
-
 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.layout','data' => []] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('layout'); ?>
@@ -24,8 +12,6 @@
         <div class=" border-x border-gray-700 text-white font-bold text-2xl p-5 sticky top-0 z-10 main-background opacity-90 backdrop-blur">
             <h1 class="opacity-100">Home</h1>
         </div>
-
-            
 
         <div class="flex border-b border-x border-gray-700 px-2 py-1 text-white">
             <?php if(auth()->guard()->check()): ?>

@@ -1,15 +1,9 @@
-<style>
-
-</style>
-
 <x-layout>
 
     <div class="container mx-auto md:w-[600px]  ">
         <div class=" border-x border-gray-700 text-white font-bold text-2xl p-5 sticky top-0 z-10 main-background opacity-90 backdrop-blur">
             <h1 class="opacity-100">Home</h1>
         </div>
-
-            
 
         <div class="flex border-b border-x border-gray-700 px-2 py-1 text-white">
             @auth

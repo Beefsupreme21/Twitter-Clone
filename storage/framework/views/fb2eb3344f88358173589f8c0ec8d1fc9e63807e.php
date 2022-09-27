@@ -14,66 +14,7 @@
         </header>
     
     
-        <div class="mb-6">
-            <input
-                type="text"
-                class="bg-black border border-gray-800 rounded p-4 w-full"
-                name="name"
-                placeholder="Beefsupreme21"
-                value="<?php echo e(old('name')); ?>"
-                disabled
-            />
-            <?php $__errorArgs = ['name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                <p class="text-red-500 text-sm mt-1"><?php echo e($message); ?></p>
-            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-        </div>
-
-        <div class="mb-6">
-            <input
-                type="text"
-                class="bg-black border border-gray-800 rounded p-4 w-full"
-                name="email"
-                placeholder="beefsupreme21@hotmail.com"
-                value="<?php echo e(old('email')); ?>"
-                disabled
-            />
-            <?php $__errorArgs = ['email'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                <p class="text-red-500 text-sm mt-1"><?php echo e($message); ?></p>
-            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-        </div>
-    
-        <div class="mb-2">
-            <input
-                type="text"
-                class="bg-black border border-gray-800 rounded p-4 w-full"
-                name="dob"
-                placeholder="Jul 21, 1989"
-            />
-            <?php $__errorArgs = ['dob'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                <p class="text-red-500 text-sm mt-1"><?php echo e($message); ?></p>
-            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-        </div>
+        
 
     </div>
 

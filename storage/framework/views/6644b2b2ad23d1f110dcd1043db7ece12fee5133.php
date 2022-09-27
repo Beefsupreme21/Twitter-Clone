@@ -14,7 +14,6 @@
         </h2>
     </header>
 
-
     <div class="mb-6 bg-white rounded py-2 px-4 text-black w-full rounded-3xl font-bold">
         <div class="flex items-center justify-center">
             <div class="img-background pr-2">
@@ -24,12 +23,10 @@
                 Sign in with Google
             </button>
         </div>
-
     </div>
 
     <div class="mb-6 bg-white rounded py-2 px-4 text-black w-full rounded-3xl font-bold">
         <div class="flex items-center justify-center">
-
             <i class="fa-brands fa-apple fa-lg pr-2"></i>
             <button>
                 Sign in with Apple
@@ -41,7 +38,6 @@
         <div class="border-b border-gray-800 mb-4 w-full"></div>
         <pre class="relative bottom-1"> or </pre>
         <div class="border-b border-gray-800 mb-4 w-full"></div>
-
     </div>
 
     <div class="mb-6">
@@ -63,7 +59,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
     </div>
-
     
     <div class="mb-6">
         <button
