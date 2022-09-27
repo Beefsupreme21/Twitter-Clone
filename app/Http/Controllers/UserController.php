@@ -17,7 +17,9 @@ class UserController extends Controller
         $formFields = $request->validate([
             'name' => 'required',
             'email' => ['required', 'email'],
-            'password' => 'required'
+            'password' => 'required',
+            'handle' => 'required'
+
         ]);
 
         $formFields['password'] = bcrypt($formFields['password']);
@@ -31,6 +33,30 @@ class UserController extends Controller
         auth()->login($user);
 
         return redirect('/')->with('message', 'User created and logged in');
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $formFields = $request->validate([
+            'name' => 'required',
+            'email' => ['required', 'email'],
+            // 'password' => 'required',
+            // 'handle' => 'required'
+        ]);
+
+        // $formFields['password'] = bcrypt($formFields['password']);
+
+        if($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $user->update($formFields);
+
+        return redirect('/')->with('message', 'User updated');
+    }
+
+    public function edit(User $user) {
+        return view('users.edit', ['user' => $user]);
     }
 
     public function logout(Request $request) {

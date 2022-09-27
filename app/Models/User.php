@@ -19,11 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
         'handle',
+        'email',
         'image',
         'verified',
+        'password',
     ];
 
     public function posts()
