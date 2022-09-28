@@ -16,12 +16,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('handle')->nullable();
             $table->string('email')->unique();
-            $table->string('image')->nullable();
-            $table->tinyInteger('verified')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('handle')->nullable();
+            $table->string('image')->nullable();
+            $table->tinyInteger('verified')->default(0);
+            $table->string('dob_month');
+            $table->string('dob_day');
+            $table->string('dob_year');
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

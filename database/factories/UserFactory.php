@@ -19,11 +19,14 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->firstName(),
+            'email' => fake()->unique()->safeEmail(),
+            'password' => '1',
             'handle' => fake()->firstName(),
             'verified' => fake()->numberBetween(0,1),
-            'email' => fake()->unique()->safeEmail(),
+            'dob_month' => fake()->monthName(),
+            'dob_day' => fake()->dayOfMonth(),
+            'dob_year' => fake()->year(),
             'email_verified_at' => now(),
-            'password' => '123456',
             'remember_token' => Str::random(10),
         ];
     }
