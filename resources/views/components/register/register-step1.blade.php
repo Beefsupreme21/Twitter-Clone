@@ -42,7 +42,7 @@
             <p>Date of birth</p>
             <p class="pt-2 text-sm text-slate-400">This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
         </div>
-        {{-- <div class="pt-4 w-full flex justify-center">
+        <div class="pt-4 w-full flex justify-center">
             <select id="form_dob_month" name="dob_month" class="bg-black border border-gray-800 p-3 rounded mr-2 w-2/5">
                 <option value="-">Month</option>
                 <option value="1">January</option>
@@ -148,7 +148,7 @@
                 <option value="1960">1960</option>
                 <option value="1959">1959</option>
             </select>
-        </div> --}}
+        </div>
     </div>
 
     <div>

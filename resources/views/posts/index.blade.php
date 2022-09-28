@@ -1,6 +1,6 @@
 <x-layout>
 
-    <div class="container mx-auto md:w-[600px]  ">
+    <div class="container mx-auto md:w-[600px]">
         <div class=" border-x border-gray-700 text-white font-bold text-2xl p-5 sticky top-0 z-10 main-background opacity-90 backdrop-blur">
             <h1 class="opacity-100">Home</h1>
         </div>
@@ -143,7 +143,7 @@
                     <div class="flex">
                         <div>
                             <div class="w-12 rounded-full img-background">
-                                <img src="{{asset('images/profile-test.jpg')}}" class="rounded-full w-12" alt="">
+                                <img src="{{ optional($post->user)->image }}" class="rounded-full w-12" alt="">
                             </div>
                         </div>
                         <div class="pl-4">

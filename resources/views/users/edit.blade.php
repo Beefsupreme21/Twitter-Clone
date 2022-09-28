@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="border-x border-gray-700 text-white">
+    <div class="border-x border-gray-700 text-white mx-auto md:w-[600px]">
 
         <div class="flex border-x border-gray-700 items-center text-white font-bold text-xl p-2 sticky top-0 z-10 main-background opacity-90 backdrop-blur">
             <i class="fa-solid fa-arrow-left"></i>
@@ -9,6 +9,11 @@
         <form method="POST" action="/users/{{$user->id}}" enctype="multipart/form-data" class="mx-16 pt-16">
             @csrf
             {{ method_field('PUT') }}
+
+            <div class="mb-6">
+                <img src="{{auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('images/profile-test.jpg')}}" class="rounded-full w-12" alt="">
+            </div>
+
             <div class="mb-6">
                 <input
                     type="text"
@@ -22,7 +27,7 @@
                 @enderror
             </div>
         
-            <div class="mb-2">
+            <div class="mb-6">
                 <input
                     type="text"
                     class="main-background border border-gray-800 rounded p-4 w-full"
@@ -34,22 +39,22 @@
                     <p class="text-red-500 text-sm mt-1">{{$message}}</p>
                 @enderror
             </div>
-{{-- 
-            <div class="pt-4 w-full flex justify-center">
+
+            <div class="mb-6 w-full block md:flex justify-center">
                 <select id="form_dob_month" name="dob_month" class="main-background border border-gray-800 p-3 rounded mr-2 w-full">
                     <option value="-">Month</option>
-                    <option value="1">January</option>
-                    <option value="2">Febuary</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
+                    <option value="January">January</option>
+                    <option value="Febuary">Febuary</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
                 </select>
     
                 <select id="form_dob_day" name="dob_day" class="main-background border border-gray-800 p-3 mr-2 rounded w-3/8">
@@ -145,12 +150,9 @@
                 </select>
             </div>
 
-            <div>
-                {{$user->image}}
-            </div>
+
 
             <div class="mb-6">
-                <label for="image" class="inline-block text-lg mb-1">Image</label>
                 <input
                     type="file"
                     class="border border-gray-800 rounded p-4 w-full"
@@ -162,9 +164,9 @@
                 @enderror
             </div>
 
-            <div class="mb-2">
+            <div class="mb-6">
                 <input
-                    type="text"
+                    type="password"
                     class="main-background border border-gray-800 rounded p-4 w-full"
                     name="password"
                     placeholder="Password"
@@ -174,12 +176,12 @@
                 @enderror
             </div>
     
-            <div class="mb-2">
+            <div class="mb-6">
                 <input
                     type="text"
                     class="main-background border border-gray-800 rounded p-4 w-full"
                     name="handle"
-                    placeholder="handle"
+                    value="{{$user->handle}}"
                 />
                 @error('handle')
                     <p class="text-red-500 text-sm mt-1">{{$message}}</p>
@@ -187,13 +189,13 @@
             </div>
 
             
-            <div>
+            <div class="mb-6">
                 <p>Is this account verified?</p>
-                <input type="radio" id="yes" name="fav_language" value="1">
+                <input type="radio" id="yes" name="verified" value="1">
                 <label for="yes">Yes</label><br>
-                <input type="radio" id="no" name="fav_language" value="0">
+                <input type="radio" id="no" name="verified" value="0">
                 <label for="no">No</label>
-            </div> --}}
+            </div>
 
             <div class="mb-6">
                 <button type="submit" class="bg-blue-400 rounded py-2 px-4 hover:bg-black">
