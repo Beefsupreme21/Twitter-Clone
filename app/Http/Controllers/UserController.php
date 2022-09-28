@@ -18,8 +18,12 @@ class UserController extends Controller
             'name' => 'required',
             'email' => ['required', 'email'],
             'password' => 'required',
-            'handle' => 'required'
-
+            'handle' => 'required',
+            'dob_month' => 'required',
+            'dob_day' => 'required',
+            'dob_year' => 'required',
+            'image',
+            'verified'
         ]);
 
         $formFields['password'] = bcrypt($formFields['password']);
@@ -40,8 +44,14 @@ class UserController extends Controller
         $formFields = $request->validate([
             'name' => 'required',
             'email' => ['required', 'email'],
-            // 'password' => 'required',
-            // 'handle' => 'required'
+            'password',
+            'handle' => 'required',
+            'dob_month' => 'required',
+            'dob_day' => 'required',
+            'dob_year' => 'required',
+
+            'image',
+            'verified'
         ]);
 
         // $formFields['password'] = bcrypt($formFields['password']);
