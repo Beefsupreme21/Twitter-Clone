@@ -10,17 +10,16 @@
 
     <div class="container mx-auto md:w-[600px]  ">
         <div class="flex border-x border-gray-700 items-center text-white font-bold text-xl p-2 sticky top-0 z-10 main-background opacity-90 backdrop-blur">
-            <i class="fa-solid fa-arrow-left"></i>
+            <a href="/">
+                <i class="fa-solid fa-arrow-left p-2 rounded-full hover:bg-slate-700"></i>
+            </a>
             <h1 class="ml-6 opacity-100">Thread</h1>
         </div>
-
-            
-                
 
         <div class="flex justify-between w-full border-x border-gray-700 px-2 py-1 text-white">
             <div class="flex">
                 <div class="w-12 rounded-full img-background">
-                    <img src="<?php echo e(asset('images/profile-test.jpg')); ?>" class="rounded-full w-12" alt="">
+                    <img src="https://i.pravatar.cc/100?u=<?php echo e($post->user->id); ?>" class="rounded-full w-12 shrink-0" alt="">
                 </div>
                 <div class="ml-2">
                     <div class="flex">
@@ -84,6 +83,33 @@
             <div class="border-y border-gray-700">
                 <p class="py-3">Tweet your reply</p>
             </div>
+
+            <section>
+                <?php $__currentLoopData = $post->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <article class="flex m-4">
+                        <div class="mr-3 flex-shrink-0">
+                            <img src="https://i.pravatar.cc/100?u=<?php echo e($comment->id); ?>" class="rounded-full w-12 shrink-0" alt="">
+                        </div>
+
+                        <div>
+                            <header>
+                                <h3><?php echo e($comment->user->name); ?></h3>
+
+                                <p class="text-xs">
+                                    Posted
+                                    <time><?php echo e($comment->created_at); ?></time>
+                                </p>
+                            </header>
+
+                            <p>
+                                <?php echo e($comment->body); ?>
+
+                            </p>
+                        </div>
+                    </article>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            </section>
             
         </article>
     </div>

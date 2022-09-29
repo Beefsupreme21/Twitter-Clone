@@ -2,20 +2,16 @@
 
     <div class="container mx-auto md:w-[600px]  ">
         <div class="flex border-x border-gray-700 items-center text-white font-bold text-xl p-2 sticky top-0 z-10 main-background opacity-90 backdrop-blur">
-            <i class="fa-solid fa-arrow-left"></i>
+            <a href="/">
+                <i class="fa-solid fa-arrow-left p-2 rounded-full hover:bg-slate-700"></i>
+            </a>
             <h1 class="ml-6 opacity-100">Thread</h1>
         </div>
-
-            {{-- <div>
-                <div class="w-12 rounded-full img-background">
-                    {{-- <img src="{{auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('images/profile-test.jpg')}}" class="rounded-full w-12" alt=""> --}}
-                {{-- </div>
-            </div> --}}
 
         <div class="flex justify-between w-full border-x border-gray-700 px-2 py-1 text-white">
             <div class="flex">
                 <div class="w-12 rounded-full img-background">
-                    <img src="{{asset('images/profile-test.jpg')}}" class="rounded-full w-12" alt="">
+                    <img src="https://i.pravatar.cc/100?u={{ $post->user->id }}" class="rounded-full w-12 shrink-0" alt="">
                 </div>
                 <div class="ml-2">
                     <div class="flex">
@@ -79,6 +75,32 @@
             <div class="border-y border-gray-700">
                 <p class="py-3">Tweet your reply</p>
             </div>
+
+            <section>
+                @foreach ($post->comments as $comment)
+                    <article class="flex m-4">
+                        <div class="mr-3 flex-shrink-0">
+                            <img src="https://i.pravatar.cc/100?u={{ $comment->id }}" class="rounded-full w-12 shrink-0" alt="">
+                        </div>
+
+                        <div>
+                            <header>
+                                <h3>{{ $comment->user->name }}</h3>
+
+                                <p class="text-xs">
+                                    Posted
+                                    <time>{{ $comment->created_at }}</time>
+                                </p>
+                            </header>
+
+                            <p>
+                                {{ $comment->body }}
+                            </p>
+                        </div>
+                    </article>
+                @endforeach
+
+            </section>
             
         </article>
     </div>

@@ -37,8 +37,11 @@ Route::get('/posts/{post}', [PostsController::class, 'show']);
 
 
 Route::get('/{user:name}', function (User $user) {
-    return view('posts.index', [
-        'posts' => $user->posts
+
+    return view('users.show', [
+        'posts' => $user->posts, 
+        'user' => $user, 
+
     ]);
 });
 

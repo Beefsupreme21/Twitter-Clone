@@ -136,6 +136,8 @@
 
         </div>
 
+        {{-- <img src="{{ optional($post->user->image) }}" class="rounded-full w-12" alt=""> --}}
+
         @foreach ($posts as $post)
         <a href="/posts/{{$post->id}}">
             <article class="border-b border-x border-gray-700 px-3 py-3 text-white text-base hover:bg-slate-800">
@@ -143,26 +145,30 @@
                     <div class="flex">
                         <div>
                             <div class="w-12 rounded-full img-background">
-                                <img src="{{ optional($post->user)->image }}" class="rounded-full w-12" alt="">
+                                @if ($post->user->image)
+                                    <img src="{{$post->user->image ? asset('storage/' . $post->user->image) : asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
+                                @else
+                                    <img src="https://i.pravatar.cc/100?u={{ $post->user->id }}" class="rounded-full w-12 shrink-0" alt="">
+                                @endif
                             </div>
                         </div>
                         <div class="pl-4">
                             <div class="flex">
                                 @if ($post->user->verified == 0) 
 
-                                <a href="/{{ $post->user->name }}" class="font-bold hover:underline">{{ $post->user->name }}</a> 
-                                <p class="ml-1 text-gray-400">@</p>
-                                <p class="text-gray-400">{{ $post->user->handle }} · {{ $post->created_at->diffForHumans() }}</p> 
+                                    <a href="/{{ $post->user->name }}" class="font-bold hover:underline">{{ $post->user->name }}</a> 
+                                    <p class="ml-1 text-gray-400">@</p>
+                                    <p class="text-gray-400">{{ $post->user->handle }} · {{ $post->created_at->diffForHumans() }}</p> 
 
                                 @else 
 
-                                <a href="/{{ $post->user->name }}" class="font-bold hover:underline">{{ $post->user->name }}</a> 
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                                </svg>
-                                <p class="ml-1 text-gray-400">@</p>
-                                <p class="text-gray-400">{{ $post->user->handle }} · {{ $post->created_at->diffForHumans() }}</p> 
-                                
+                                    <a href="/{{ $post->user->name }}" class="font-bold hover:underline">{{ $post->user->name }}</a> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                                    </svg>
+                                    <p class="ml-1 text-gray-400">@</p>
+                                    <p class="text-gray-400">{{ $post->user->handle }} · {{ $post->created_at->diffForHumans() }}</p> 
+                                    
                                 @endif
 
                             </div>
