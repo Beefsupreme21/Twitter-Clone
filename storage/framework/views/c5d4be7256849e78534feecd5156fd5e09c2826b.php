@@ -144,8 +144,6 @@
 
         </div>
 
-        
-
         <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <a href="/posts/<?php echo e($post->id); ?>">
             <article class="border-b border-x border-gray-700 px-3 py-3 text-white text-base hover:bg-slate-800">
@@ -212,51 +210,72 @@
                             </div>
                         </div>
 
-                        <div x-data="{ retweet: false, count: <?php echo e($post->retweets); ?> }" class="flex hover:text-green-500">
-                            <div x-show="!retweet" x-on:click="retweet = ! retweet, count++" x-cloak >
-                                <input type="hidden" name="replies" >
-                                <input class="custom-checkbox-input" name="alarm" type="checkbox">
-                                <span class="custom-checkbox-text flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                                    </svg>          
-                                    <p class="pl-3" x-text="count"></p> 
-                                </span>
-                            </div>
-                         
-                            <div x-show="retweet" x-on:click="retweet = ! retweet, count--" class="text-green-500" x-cloak >
-                                <input class="custom-checkbox-input" name="retweets" type="checkbox hidden">
-                                <span class="custom-checkbox-text flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                                    </svg>          
-                                    <p class="pl-3" x-text="count"></p> 
-                                </span>
-                            </div>
-                        </div>
 
-                        <div x-data="{ like: false, count: <?php echo e($post->likes); ?> }" class="flex hover:text-pink-600">
-                            <div x-show="!like" x-on:click="like = ! like, count++" x-cloak >
-                                <input type="hidden" name="replies" >
-                                <input class="custom-checkbox-input" name="alarm" type="checkbox">
-                                <span class="custom-checkbox-text flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                    </svg>       
-                                    <p class="pl-3" x-text="count"></p> 
-                                </span>
+                        
+
+                            <div class="flex hover:text-green-500">
+                                <form action="/retweets" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="post_id" value="<?php echo e($post->id); ?>">
+                                    <button type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                                        </svg>          
+                                    </button>
+                                </form>
+                                <p class="pl-3"><?php echo e($post->retweets_count); ?></p> 
                             </div>
-                         
-                            <div x-show="like" x-on:click="like = ! like, count--" class="pink-color" x-cloak >
-                                <input class="custom-checkbox-input" name="like" type="checkbox hidden">
-                                <span class="custom-checkbox-text flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#F91880" viewBox="0 0 24 24" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                    </svg>       
-                                    <p class="pl-3" x-text="count"></p> 
-                                </span>
+
+                        
+
+                            <div class="flex text-green-500">
+                                <form action="/retweets/delete" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+
+                                    <input type="hidden" name="post_id" value="<?php echo e($post->id); ?>">
+                                    <button type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                                        </svg>          
+                                    </button>
+                                </form>
+
+                                
+
                             </div>
-                        </div>
+
+
+                        
+
+                            
+
+
+                        <form action="/">
+                            <div x-data="{ like: false }" class="flex hover:text-pink-600">
+                                <div x-show="!like" x-on:click="like = ! like" x-cloak @click<?php echo e($post->increment('likes')); ?>>
+                                    <input type="hidden" name="replies" >
+                                    <input class="custom-checkbox-input" type="checkbox submit">
+                                    <span class="custom-checkbox-text flex">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                        </svg>       
+                                        <p class="pl-3"><?php echo e($post->likes); ?></p> 
+                                    </span>
+                                </div>
+                             
+                                <div x-show="like" x-on:click="like = ! like" class="pink-color" onclick="myFunction()" x-cloak>
+                                    <input class="custom-checkbox-input" name="like" type="checkbox hidden">
+                                    <span class="custom-checkbox-text flex">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#F91880" viewBox="0 0 24 24" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                        </svg>       
+                                        <p class="pl-3"><?php echo e($post->likes); ?></p> 
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+
 
                         <div x-data="{ share: false }" class="flex hover:text-cyan-500">
                             <div x-show="!share" x-on:click="share = ! share" x-cloak >
@@ -289,4 +308,10 @@
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?><?php /**PATH C:\xampp\Projects\Twitter-Clone\resources\views/posts/index.blade.php ENDPATH**/ ?>
+<?php endif; ?>
+
+<script>
+    function handleClick(e) {
+        // Now you can access the event object (e) directly
+    }
+</script><?php /**PATH C:\xampp\Projects\Twitter-Clone\resources\views/posts/index.blade.php ENDPATH**/ ?>

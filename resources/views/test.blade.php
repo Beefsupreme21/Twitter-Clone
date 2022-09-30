@@ -17,9 +17,15 @@
     </head>
 
     <body>
-        Hey
-        <img src="{{ asset('images/default_profile.png')}}" class="rounded-full w-3/6" alt="">
-
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     </body>
 </html>
 

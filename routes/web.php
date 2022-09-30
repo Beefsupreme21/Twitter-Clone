@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\RetweetController;
 
 
 Route::get('/', function () {
@@ -16,13 +17,15 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::delete('/retweets/delete', [RetweetController::class, 'destroy']);
+Route::post('/retweets', [RetweetController::class, 'store']);
+
+
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-
 Route::get('/register', [UserController::class, 'create']);
 Route::post('/users', [UserController::class, 'store']);
-
 Route::get('/users/{user}/edit', [UserController::class, 'edit']);
 Route::put('/users/{user}', [UserController::class, 'update']);
 
@@ -36,12 +39,14 @@ Route::delete('/posts/{post}', [PostsController::class, 'destroy']);
 Route::get('/posts/{post}', [PostsController::class, 'show']);
 
 
+
+
+
 Route::get('/{user:name}', function (User $user) {
 
     return view('users.show', [
         'posts' => $user->posts, 
         'user' => $user, 
-
     ]);
 });
 
