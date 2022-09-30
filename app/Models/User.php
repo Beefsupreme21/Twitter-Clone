@@ -34,12 +34,13 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function scopeFilter($query, array $filters) {
-
-        if($filters['search'] ?? false) {
-            $query->where('name', 'like', '%' . request('search') . '%');
-        }
+    public function retweets()
+    {
+        return $this->hasOne(Retweet::class);
     }
+
+
+
 
     /**
      * The attributes that should be hidden for serialization.

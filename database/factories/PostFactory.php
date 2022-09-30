@@ -19,7 +19,6 @@ class PostFactory extends Factory
         return [
             'user_id' => fake()->numberBetween(1,10),
             'replies' => fake()->numberBetween(1,20),
-            'retweets' => fake()->numberBetween(1,20),
             'likes' => fake()->numberBetween(1,20),
             'content' => fake()->paragraph(),
             'created_at' => now(),

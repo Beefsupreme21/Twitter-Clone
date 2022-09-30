@@ -27,12 +27,14 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-
-
-    public function scopeFilter($query, array $filters) {
-
-        if($filters['search'] ?? false) {
-            $query->where('content', 'like', '%' . request('search') . '%');
-        }
+    public function retweets()
+    {
+        return $this->hasMany(Retweet::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
 }
