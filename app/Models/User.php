@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function retweets()
     {
-        return $this->hasOne(Retweet::class);
+        return $this->hasMany(Retweet::class);
     }
 
 

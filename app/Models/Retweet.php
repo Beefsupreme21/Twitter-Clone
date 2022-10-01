@@ -16,7 +16,12 @@ class Retweet extends Model
 
     public function posts()
     {
-        return $this->hasOne(Post::class);
+        return $this->belongsTo(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

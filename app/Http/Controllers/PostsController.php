@@ -10,10 +10,16 @@ class PostsController extends Controller
 {
     public function index()
     {   
-        $posts = Post::latest()->with('retweets')->withCount('retweets')->with('user')->get();   
+        $posts = Post::latest()->withCount('retweets')->with('user')->get();   
+        $retweets = Retweet::latest()->with('user')->get(); 
+
+        // dd($retweets[1]->user_id);
+
+    
 
         return view('posts.index', [
             'posts' => $posts, 
+            'retweets' => $retweets, 
         ]);
     }
 
