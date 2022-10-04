@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function show(User $user) {
+        return view('users.show', [
+            'posts' => $user->posts, 
+            'user' => $user, 
+        ]);
+    }
+
     public function create()
     {
         return view('users.register');
