@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Models\Retweet;
 
 class PostsController extends Controller
 {
@@ -21,13 +20,6 @@ class PostsController extends Controller
         return view('posts.show', [
             'post' => $post
         ]);
-    }
-
-
-
-    public function create()
-    {
-        //
     }
 
     public function store(Request $request)
