@@ -64,13 +64,13 @@
                             <div class="flex">
                                 <?php if($post->user->verified == 0): ?> 
 
-                                    <a href="/<?php echo e($post->user->name); ?>" class="font-bold hover:underline"><?php echo e($post->user->name); ?></a> 
+                                    <a href="/users/<?php echo e($post->user->name); ?>" class="font-bold hover:underline"><?php echo e($post->user->name); ?></a> 
                                     <p class="ml-1 text-gray-400">@</p>
                                     <p class="text-gray-400"><?php echo e($post->user->handle); ?> · <?php echo e($post->created_at->diffForHumans()); ?></p> 
 
                                 <?php else: ?> 
 
-                                    <a href="/<?php echo e($post->user->name); ?>" class="font-bold hover:underline"><?php echo e($post->user->name); ?></a> 
+                                    <a href="/users/<?php echo e($post->user->name); ?>" class="font-bold hover:underline"><?php echo e($post->user->name); ?></a> 
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                                     </svg>
@@ -112,28 +112,37 @@
                             </div>
                         </div>
 
-                        <div x-data="{ retweet: false, count: <?php echo e($post->retweets); ?> }" class="flex hover:text-green-500">
-                            <div x-show="!retweet" x-on:click="retweet = ! retweet, count++" x-cloak >
-                                <input type="hidden" name="replies" >
-                                <input class="custom-checkbox-input" name="alarm" type="checkbox">
-                                <span class="custom-checkbox-text flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                                    </svg>          
-                                    <p class="pl-3" x-text="count"></p> 
-                                </span>
+                        <?php if($post->retweets->contains('user_id', auth()->id())): ?>
+
+                            <div class="flex text-green-500">
+                                <form action="/retweets/<?php echo e($post->retweets->where('user_id', auth()->id())->first()->id); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+                                    <button type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                                        </svg>          
+                                    </button>
+                                </form>
+                                <p class="pl-3"><?php echo e($post->retweets->count()); ?></p> 
                             </div>
-                         
-                            <div x-show="retweet" x-on:click="retweet = ! retweet, count--" class="text-green-500" x-cloak >
-                                <input class="custom-checkbox-input" name="retweets" type="checkbox hidden">
-                                <span class="custom-checkbox-text flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                                    </svg>          
-                                    <p class="pl-3" x-text="count"></p> 
-                                </span>
+
+                        <?php else: ?>
+
+                            <div class="flex hover:text-green-500">
+                                <form action="/retweets" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="post_id" value="<?php echo e($post->id); ?>">
+                                    <button type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                                        </svg>          
+                                    </button>
+                                </form>
+                                <p class="pl-3"><?php echo e($post->retweets->count()); ?></p> 
                             </div>
-                        </div>
+
+                        <?php endif; ?>
 
                         <div x-data="{ like: false, count: <?php echo e($post->likes); ?> }" class="flex hover:text-pink-600">
                             <div x-show="!like" x-on:click="like = ! like, count++" x-cloak >

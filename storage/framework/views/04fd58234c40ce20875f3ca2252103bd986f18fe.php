@@ -16,10 +16,42 @@
         <script src="https://kit.fontawesome.com/19ab508515.js" crossorigin="anonymous"></script>
     </head>
 
-    <body>
-        Hey
-        <img src="<?php echo e(asset('images/default_profile.png')); ?>" class="rounded-full w-3/6" alt="">
+    <body class="bg-blue-800 text-black">
+        <form action="/comments/replies" method="POST">
+            <?php echo csrf_field(); ?>
+            <div class="relative">
+                <input
+                    type="text"
+                    name="body"
+                    class="main-background text-xl pb-6 focus:outline-none"
+                    placeholder="Tweet your reply"
+                />             
+                <input
+                    type="text"
+                    name="user_id"
+                    class="main-background text-xl pb-6 focus:outline-none"
+                    placeholder="User ID"
+                />                
+                <input
+                    type="text"
+                    name="comment_id"
+                    class="main-background text-xl pb-6 focus:outline-none"
+                    placeholder="Comment ID"
+                />                
+                <input
+                    type="text"
+                    name="post"
+                    class="main-background text-xl pb-6 focus:outline-none"
+                    placeholder="Post ID"
+                />
+            </div>
 
+            <div class="flex justify-between pt-4">
+                <div>
+                    <button type="submit" class="bg-blue-500 rounded-full text-white px-6 py-2 mr-4 mb-4">Reply</button>
+                </div>
+            </div>
+        </form>
     </body>
 </html>
 

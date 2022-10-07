@@ -18,20 +18,20 @@
 
         <div class="flex justify-between w-full border-x border-gray-700 px-4 py-1 text-white">
             <div class="flex">
-                <a href="/users/<?php echo e($post->user->name); ?>" class="flex">
+                <a href="/users/<?php echo e($comment->user->name); ?>" class="flex">
                     <div class="w-12 rounded-full img-background">
-                        <img src="https://i.pravatar.cc/100?u=<?php echo e($post->user->id); ?>" class="rounded-full w-12 shrink-0" alt="">
+                        <img src="https://i.pravatar.cc/100?u=<?php echo e($comment->user->id); ?>" class="rounded-full w-12 shrink-0" alt="">
                     </div>
                     <div class="ml-2">
                         <div class="flex">
-                            <div class="font-bold hover:underline"><?php echo e($post->user->name); ?></div> 
+                            <div class="font-bold hover:underline"><?php echo e($comment->user->name); ?></div> 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                             </svg>
                         </div>
                         <div class="flex text-gray-400">
                             <p>@</p>
-                            <p><?php echo e($post->user->handle); ?></p>
+                            <p><?php echo e($comment->user->handle); ?></p>
                         </div>
                     </div>
                 </a>
@@ -47,12 +47,12 @@
 
             <div class="px-4">
                 <div class="px-2">
-                    <p class="text-2xl"><?php echo e($post->content); ?></p>
-                    <p class="text-gray-400 py-4"> <?php echo e($post->created_at); ?> · Twitter Web App</p> 
+                    <p class="text-2xl"><?php echo e($comment->body); ?></p>
+                    <p class="text-gray-400 py-4"> <?php echo e($comment->created_at); ?> · Twitter Web App</p> 
                 </div>
     
                 <div class="border-y border-gray-700">
-                    <p class="py-3"><?php echo e($post->likes->count()); ?><span> Likes</span></p>
+                    <p class="py-3">0 Likes</span></p>
                 </div>
     
                 <div class="flex justify-around py-3 px-6 text-slate-400">
@@ -87,7 +87,7 @@
                             <img src="<?php echo e(asset('images/default_profile.png')); ?>" class="rounded-full w-12" alt="default profile picture">
                         </div>
                     </div>
-                    <form action="/posts/<?php echo e($post->id); ?>/comments" method="POST">
+                    <form action="/comments/replies/<?php echo e($comment->id); ?>" method="POST">
                         <?php echo csrf_field(); ?>
                         <div class="relative">
                             <input
@@ -136,78 +136,79 @@
             </div>
 
             <section>
-                <?php $__currentLoopData = $post->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <article class="flex p-4 border-t border-gray-700" >
-                        <div class="mr-3 flex-shrink-0">
-                            <img src="https://i.pravatar.cc/100?u=<?php echo e($comment->user_id); ?>" class="rounded-full w-12 shrink-0" alt="">
-                        </div>
+                <?php $__currentLoopData = $comment->replyComments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $replyComment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <article class="flex p-4 border-t border-gray-700" >
+                    <div class="mr-3 flex-shrink-0">
+                        <img src="https://i.pravatar.cc/100?u=<?php echo e($replyComment->user_id); ?>" class="rounded-full w-12 shrink-0" alt="">
+                    </div>
 
-                        <div>
-                            <div class="pl-4">
+                    <div>
+                        <div class="pl-4">
+                            <div class="flex">
+                                <?php if($replyComment->user->verified == 0): ?> 
+    
+                                    <a href="/users/<?php echo e($replyComment->user->name); ?>" class="font-bold hover:underline"><?php echo e($replyComment->user->name); ?></a> 
+                                    <p class="ml-1 text-gray-400">@</p>
+                                    <p class="text-gray-400"><?php echo e($replyComment->user->handle); ?> · <?php echo e($replyComment->created_at->diffForHumans()); ?></p> 
+    
+                                <?php else: ?> 
+    
+                                    <a href="/users/<?php echo e($replyComment->user->name); ?>" class="font-bold hover:underline"><?php echo e($replyComment->user->name); ?></a> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                                    </svg>
+                                    <p class="ml-1 text-gray-400">@</p>
+                                    <p class="text-gray-400"><?php echo e($replyComment->user->handle); ?> · 2 hours</p> 
+                                    
+                                <?php endif; ?>
+    
+                            </div>
+                            
+                            <a href="#">
                                 <div class="flex">
-                                    <?php if($comment->user->verified == 0): ?> 
-        
-                                        <a href="/users/<?php echo e($comment->user->name); ?>" class="font-bold hover:underline"><?php echo e($comment->user->name); ?></a> 
-                                        <p class="ml-1 text-gray-400">@</p>
-                                        <p class="text-gray-400"><?php echo e($comment->user->handle); ?> · <?php echo e($comment->created_at->diffForHumans()); ?></p> 
-        
-                                    <?php else: ?> 
-        
-                                        <a href="/users/<?php echo e($comment->user->name); ?>" class="font-bold hover:underline"><?php echo e($comment->user->name); ?></a> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                                        </svg>
-                                        <p class="ml-1 text-gray-400">@</p>
-                                        <p class="text-gray-400"><?php echo e($comment->user->handle); ?> · <?php echo e($post->created_at->diffForHumans()); ?></p> 
-                                        
-                                    <?php endif; ?>
-        
+                                    <p class="text-gray-400">Replying to</p>
+                                    <p class="ml-1 text-sky-500">@</p>
+                                    
                                 </div>
-                                
-                                <a href="/users/<?php echo e($post->user->name); ?>">
-                                    <div class="flex">
-                                        <p class="text-gray-400">Replying to</p>
-                                        <p class="ml-1 text-sky-500">@</p>
-                                        <p class="text-sky-500"><?php echo e($post->user->handle); ?></p> 
-                                    </div>
-                                </a>
-                                <a href="/comments/<?php echo e($comment->id); ?>">
-                                    <p class="text-md"><?php echo e($comment->body); ?></p>
-                                </a>
-
-                            </div>
-
-                            <div class="flex justify-between pt-3 px-4 text-slate-400 mr-12">
-                                <div class="flex hover:text-cyan-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
-                                    </svg>             
-                                </div>
-                
-                                <div class="flex hover:text-cyan-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                                    </svg>          
-                                </div>
-                
-                                <div class="flex hover:text-cyan-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                    </svg>       
-                                </div>
-                
-                                <div class="flex hover:text-cyan-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                    </svg>       
-                                </div>                              
-                            </div>
+                            </a>
+                            <a href="/comments/<?php echo e($replyComment->id); ?>">
+                                <p class="text-md"><?php echo e($replyComment->body); ?></p>
+                            </a>
 
                         </div>
-                    </article>
+
+                        <div class="flex justify-between pt-3 px-4 text-slate-400 mr-12">
+                            <div class="flex hover:text-cyan-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
+                                </svg>             
+                            </div>
+            
+                            <div class="flex hover:text-cyan-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                                </svg>          
+                            </div>
+            
+                            <div class="flex hover:text-cyan-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                </svg>       
+                            </div>
+            
+                            <div class="flex hover:text-cyan-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                </svg>       
+                            </div>                              
+                        </div>
+
+                    </div>
+                </article>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </section>
+
             
         </article>
     </div>
@@ -217,4 +218,4 @@
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?><?php /**PATH C:\xampp\Projects\Twitter-Clone\resources\views/posts/show.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH C:\xampp\Projects\Twitter-Clone\resources\views/comments/show.blade.php ENDPATH**/ ?>

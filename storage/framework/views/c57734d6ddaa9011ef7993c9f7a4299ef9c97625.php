@@ -19,18 +19,33 @@
             <p class="text-xl text-white font-bold p-4">What's happening</p>
 
             <div class="hover:bg-slate-700 p-4">
-                <p class="text-slate-400 text-sm">Television · 2 hours ago</p>
+                <p class="text-slate-400 text-sm">Television · LIVE</p>
                 <p class="font-bold text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, harum.</p>
             </div>
 
             <div class="hover:bg-slate-700 p-4">
-                <p class="text-slate-400 text-sm">Queen Elizabeth II</p>
-                <p class="font-bold text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, harum.</p>
+                <div class="flex">
+                    <p class="font-bold text-white text-sm">Queen Elizabeth II</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                    </svg>
+                    <p class="text-slate-400 text-sm"> · 2 hours ago</p>
+                </div>
+
+                <p class="font-bold text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus reiciendis tenetur ut?</p>
             </div>
 
             <div class="hover:bg-slate-700 p-4">
-                <p class="text-slate-400 text-sm">Queen Elizabeth II</p>
-                <p class="font-bold text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, harum.</p>
+                <div class="flex text-sm">
+                    <img src="<?php echo e(asset('images/wsj.jpg')); ?>" class="rounded-full w-4" alt="">
+                    <p class="font-bold text-white">The Wall Street Journal</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                    </svg>
+                    <p class="text-slate-400"> · Last night</p>
+                </div>
+
+                <p class="font-bold text-white">Investigation finds that chess grandmaster 'likely cheated' more than 100 times</p>
             </div>
         </div>
 
@@ -46,15 +61,15 @@
         </div>
 
         <div class="text-white py-3 px-2 flex justify-between hover:bg-slate-700">
-            <div class="flex">
+            <a href="#" class="flex">
                 <div>
                     <div class="w-12 rounded-full img-background">
-                        <img src="<?php echo e(asset('images/profile-test.jpg')); ?>" class="rounded-full w-12" alt="">
+                        <img src="<?php echo e(asset('images/rihanna.jpg')); ?>" class="rounded-full w-12" alt="">
                     </div>
                 </div>
                 <div class="pl-3">
                     <div class="flex">
-                        <p class="font-bold">Tony Hawk</p>
+                        <p class="font-bold">Rihanna</p>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                         </svg>
@@ -62,10 +77,10 @@
 
                     <div class="flex text-slate-400 leading-none">
                         <p>@</p>
-                        <p>tonyhawk</p>
+                        <p>Rihanna</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <div>
                 <button class="bg-slate-300 text-sm text-black font-bold rounded-full px-4 py-2">
@@ -75,10 +90,10 @@
         </div>
 
         <div class="text-white py-3 px-2 flex justify-between hover:bg-slate-700">
-            <div class="flex">
+            <a href="#" class="flex">
                 <div>
                     <div class="w-12 rounded-full img-background">
-                        <img src="<?php echo e(asset('images/profile-test.jpg')); ?>" class="rounded-full w-12" alt="">
+                        <img src="<?php echo e(asset('images/obama.jpg')); ?>" class="rounded-full w-12" alt="">
                     </div>
                 </div>
                 <div class="pl-3">
@@ -88,7 +103,7 @@
                         <p>BarackObama</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <div>
                 <button class="bg-slate-300 text-sm text-black font-bold rounded-full px-4 py-2">
@@ -98,20 +113,20 @@
         </div>
 
         <div class="text-white py-3 px-2 flex justify-between hover:bg-slate-700">
-            <div class="flex">
+            <a href="#" class="flex">
                 <div>
                     <div class="w-12 rounded-full img-background">
-                        <img src="<?php echo e(asset('images/profile-test.jpg')); ?>" class="rounded-full w-12" alt="">
+                        <img src="<?php echo e(asset('images/snoop.jpg')); ?>" class="rounded-full w-12" alt="">
                     </div>
                 </div>
                 <div class="pl-3">
-                    <p class="font-bold">Sean Evans</p>
+                    <p class="font-bold">Snoop Dogg</p>
                     <div class="flex text-slate-400 leading-none">
                         <p>@</p>
-                        <p>Sean Evans</p>
+                        <p>SnoopDogg</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <div>
                 <button class="bg-slate-300 text-sm text-black font-bold rounded-full px-4 py-2">
