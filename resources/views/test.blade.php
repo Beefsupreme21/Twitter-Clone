@@ -16,16 +16,24 @@
         <script src="https://kit.fontawesome.com/19ab508515.js" crossorigin="anonymous"></script>
     </head>
 
-    <body>
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <body class="bg-blue-800 text-black">
+        <form action="/comments/replies" method="POST">
+            @csrf
+            <div class="relative">
+                <input
+                    type="text"
+                    name="body"
+                    class="main-background text-xl pb-6 focus:outline-none"
+                    placeholder="Tweet your reply"
+                />             
+            </div>
+
+            <div class="flex justify-between pt-4">
+                <div>
+                    <button type="submit" class="bg-blue-500 rounded-full text-white px-6 py-2 mr-4 mb-4">Reply</button>
+                </div>
+            </div>
+        </form>
     </body>
 </html>
 

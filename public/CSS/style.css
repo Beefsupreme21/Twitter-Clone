@@ -23,12 +23,13 @@
     background-color: #1E2732;
 }
 
+.heart-color {
+    color: #F91880;
+}
+
 .custom-checkbox-input {
     display: none;
 }
 
-.custom-checkbox-text {
-    cursor: pointer;
-}
 
 [x-cloak] { display: none !important; }
