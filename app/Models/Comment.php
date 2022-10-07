@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\replyComments;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
@@ -25,4 +26,17 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function replyComments()
+    {
+        return $this->hasMany(replyComments::class);
+    }
+
+    public function addReplyComment($body)
+    {
+        replyComments::create([
+            'body' => $body,
+            'comment_id' => $this->id,
+            'user_id' => auth()->user()->id
+        ]);
+    }
 }

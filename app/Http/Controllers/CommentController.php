@@ -10,15 +10,16 @@ class CommentController extends Controller
 {
     public function store(Post $post)
     {
-        // request()->merge([
-        //     'user_id' => auth()->user()->id,
-        //     'post_id' => $post->id,
-        // ]);
-
         $this->validate(request(), ['body' => 'required']);
 
         $post->addComment(request('body'));
 
         return back();
+    }
+
+    public function show(Comment $comment) {
+        return view('comments.show', [
+            'comment' => $comment
+        ])->with('replyComments');
     }
 }
