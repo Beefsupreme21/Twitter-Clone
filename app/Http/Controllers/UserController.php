@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -102,6 +103,14 @@ class UserController extends Controller
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+    }
 
+    public function demo()
+    {
+        $demoUser = User::where('email', 'demo@example.com')->first();
+
+        auth()->login($demoUser);
+
+        return redirect('/posts');
     }
 }
