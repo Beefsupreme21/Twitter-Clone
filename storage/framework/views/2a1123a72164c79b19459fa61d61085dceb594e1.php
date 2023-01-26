@@ -7,14 +7,12 @@
 
 <div class="w-4/5 mx-auto flex flex-col justify-between h-[540px]">
     <div>
-
         <header class="mb-6">
             <h2 class="text-3xl font-semibold">
                 Pick a profile picture
             </h2>
             <p>Have a favorite selfie? Upload it now.</p>
         </header>
-    
         <div class="mb-6">
             <label for="image" class="inline-block text-lg mb-1">Image</label>
             <input
@@ -22,7 +20,6 @@
                 class="bg-black border border-gray-800 rounded p-4 w-full"
                 name="image"
             />
-    
             <?php $__errorArgs = ['image'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -35,7 +32,6 @@ endif;
 unset($__errorArgs, $__bag); ?>
         </div>
     </div>
-
     <div>
         <div class="mb-6">
             <button

@@ -18,12 +18,12 @@
 
             <div>
                 <div class="w-12 rounded-full img-background">
-                    <img src="<?php echo e(auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('images/profile-test.jpg')); ?>" class="rounded-full w-12" alt="">
+                    <img src="<?php echo e(auth()->user()->image ? asset('storage/images/'. auth()->user()->image) : asset('images/default_profile.png')); ?>" class="rounded-full w-12" alt="">
                 </div>
             </div>
 
             <div class="pl-2 pt-3 w-full">
-                <form action="/" method="POST">
+                <form action="/posts" method="POST">
                     <?php echo csrf_field(); ?>
                     <div class="relative">
                         <input
@@ -151,7 +151,7 @@
                     <div>
                         <div class="w-12 rounded-full img-background">
                             <?php if($post->user->image): ?>
-                                <img src="<?php echo e($post->user->image ? asset('storage/' . $post->user->image) : asset('images/default_profile.png')); ?>" class="rounded-full w-12" alt="">
+                                <img src="<?php echo e(asset('images/default_profile.png')); ?>" class="rounded-full w-12" alt="">
                             <?php else: ?>
                                 <img src="https://i.pravatar.cc/100?u=<?php echo e($post->user->id); ?>" class="rounded-full w-12 shrink-0" alt="">
                             <?php endif; ?>

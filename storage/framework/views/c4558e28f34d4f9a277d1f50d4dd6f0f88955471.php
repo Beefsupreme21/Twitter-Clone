@@ -7,7 +7,6 @@
     </div>
 </div>
 
- 
 <div class="w-4/6 mx-auto flex flex-col" x-data="{accept: false}">
     <div class="pb-60">
         <header class="">
@@ -15,8 +14,6 @@
                 Enter your password
             </h2>
         </header>
-
-
         <div class="mb-2">
             <input
                 type="password"
@@ -41,7 +38,6 @@ unset($__errorArgs, $__bag); ?>
             </a>
         </div>
     </div>
-
     
     <div>
         <div class="mb-6" x-show="accept">
@@ -52,8 +48,6 @@ unset($__errorArgs, $__bag); ?>
                 Log in
             </button>
         </div>
-
-
         <div class="mb-6" x-show="!accept">
             <button
                 class="bg-gray-400 rounded py-4 px-4 text-black w-full rounded-3xl font-bold"
@@ -62,8 +56,6 @@ unset($__errorArgs, $__bag); ?>
                 Log in
             </button>
         </div>
-      
-
         <div>
             <p class="text-gray-500">
                 Don't have an account?
@@ -73,7 +65,6 @@ unset($__errorArgs, $__bag); ?>
             </p>
         </div>
     </div>
-
 </div>
 
 <?php /**PATH C:\xampp\Projects\Twitter-Clone\resources\views/components/login/login-password.blade.php ENDPATH**/ ?>

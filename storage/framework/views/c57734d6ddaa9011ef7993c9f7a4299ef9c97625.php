@@ -36,9 +36,9 @@
             </div>
 
             <div class="hover:bg-slate-700 p-4">
-                <div class="flex text-sm">
-                    <img src="<?php echo e(asset('images/wsj.jpg')); ?>" class="rounded-full w-4" alt="">
-                    <p class="font-bold text-white">The Wall Street Journal</p>
+                <div class="flex text-sm items-center">
+                    <img src="<?php echo e(asset('images/wsj.jpg')); ?>" class="rounded-full w-5 h-5" alt="">
+                    <p class="font-bold text-white">&nbsp;The Wall Street Journal</p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                     </svg>
@@ -50,7 +50,7 @@
         </div>
 
         <div class="hover:bg-slate-700 p-4">
-            <a href="#" class=" text-cyan-600 ">Show more</a>
+            <a href="#" class="text-cyan-600 ">Show more</a>
         </div>
 
     </div>
