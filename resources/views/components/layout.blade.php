@@ -8,32 +8,24 @@
         <link rel = "icon" 
               href = "https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png" 
               type = "image/x-icon">
-
         <img  class="rounded-full w-12" alt="">
-
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://kit.fontawesome.com/19ab508515.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}" />
-
     </head>
 
     <body class="main-background m-auto xl:w-[1265px] main-font">
-
         <div class="flex">
             <div>
                 <x-header />   
-
             </div>
-
             <div>
                 {{$slot}}
             </div>
-    
             <div class="hidden lg:block">
                 <x-sidebar />
             </div>
         </div>
-
     </body>
 </html>

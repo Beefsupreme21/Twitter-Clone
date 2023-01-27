@@ -1,5 +1,4 @@
 <x-layout>
-
     <div class="container mx-auto md:w-[600px] border-x border-gray-700">
         <div class="flex items-center text-white font-bold text-xl p-2 sticky top-0 z-10 main-background opacity-90 backdrop-blur">
             <a href="/">
@@ -14,39 +13,34 @@
                 </svg>
             @endif  
         </div>
-
         <div>
-            <div class="w-full h-full">
-                <img src={{ asset('images/tdfw.jpg') }} alt="">
-            </div>
+            <div class="w-full h-40 bg-black"></div>
             <div class="relative bottom-20 ml-5 w-1/3 -mb-20">
                 @if ($user->image)
-                    <img src="{{$user->image ? asset('storage/' . $user->image) : asset('images/default_profile.png')}}" class="rounded-full picture-background" alt="">
+                    <img src="{{$user->image ? asset('storage/images/'. auth()->user()->image) : asset('images/default_profile.png')}}" class="rounded-full picture-background w-32" alt="">
                 @else
                     <img src="https://i.pravatar.cc/128?u={{ $user->id }}" class="rounded-full shrink-0 w-32" alt="">
                 @endif
             </div>
         </div>
-
-        <div>
-            <a href="/{{ $user->name }}" class="font-bold hover:underline">{{ $user->name }}</a> 
-            <div class="flex">
-                <p class="ml-1 text-gray-400">@</p>
-                <p class="text-gray-400">{{ $user->handle }}</p> 
+        <div class="border-b border-gray-700 pb-4">
+            <div class="ml-5 text-white text-lg">
+                <a href="/users/{{ $user->name }}" class="font-bold hover:underline">{{ $user->name }}</a> 
+            </div>
+            <div class="flex ml-4">
+                <div class="ml-1 text-gray-400">@</div>
+                <div class="text-gray-400">{{ $user->handle }}</div> 
             </div>
 
         </div>
-
-
         @foreach ($posts as $post)
-        <a href="/posts/{{$post->id}}">
-            <article class="border-b border-gray-700 px-3 py-3 text-white text-base hover:bg-slate-800">
-
+            <a href="/posts/{{$post->id}}">
+                <article class="border-b border-gray-700 px-3 py-3 text-white text-base hover:bg-slate-800">
                     <div class="flex">
                         <div>
                             <div class="w-12 rounded-full img-background">
                                 @if ($post->user->image)
-                                    <img src="{{$post->user->image ? asset('storage/' . $post->user->image) : asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
+                                    <img src="{{$post->user->image ? asset('storage/images/'. auth()->user()->image) : asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
                                 @else
                                     <img src="https://i.pravatar.cc/100?u={{ $post->user->id }}" class="rounded-full w-12 shrink-0" alt="">
                                 @endif
@@ -55,32 +49,24 @@
                         <div class="pl-4">
                             <div class="flex">
                                 @if ($post->user->verified == 0) 
-
                                     <a href="/users/{{ $post->user->name }}" class="font-bold hover:underline">{{ $post->user->name }}</a> 
                                     <p class="ml-1 text-gray-400">@</p>
                                     <p class="text-gray-400">{{ $post->user->handle }} · {{ $post->created_at->diffForHumans() }}</p> 
-
                                 @else 
-
                                     <a href="/users/{{ $post->user->name }}" class="font-bold hover:underline">{{ $post->user->name }}</a> 
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                                     </svg>
                                     <p class="ml-1 text-gray-400">@</p>
                                     <p class="text-gray-400">{{ $post->user->handle }} · {{ $post->created_at->diffForHumans() }}</p> 
-                                    
                                 @endif
-
-                            </div>
-                         
+                            </div>                
                             <a href="/posts/{{$post->id}}">
                                 <p class="text-md">{{ $post->content }}</p>
                             </a>
                         </div>
                     </div>
-    
                     <div class="flex justify-around pt-4 px-6 text-slate-400">
-
                         <div x-data="{ reply: false, count: {{ $post->replies }} }" class="flex hover:text-cyan-500" x-cloak>
                             <div x-show="!reply" x-on:click="reply = ! reply, count++" x-cloak >
                                 <input type="hidden" name="replies" >
@@ -92,7 +78,6 @@
                                     <p class="pl-3" x-text="count"></p> 
                                 </span>
                             </div>
-                         
                             <div x-show="reply" x-on:click="reply = ! reply, count--" class="text-cyan-600" x-cloak >
                                 <input class="custom-checkbox-input" name="replies" type="checkbox hidden">
                                 <span class="custom-checkbox-text flex">
@@ -103,9 +88,7 @@
                                 </span>
                             </div>
                         </div>
-
                         @if ($post->retweets->contains('user_id', auth()->id()))
-
                             <div class="flex text-green-500">
                                 <form action="/retweets/{{ $post->retweets->where('user_id', auth()->id())->first()->id }}" method="POST">
                                     @csrf
@@ -118,9 +101,7 @@
                                 </form>
                                 <p class="pl-3">{{ $post->retweets->count() }}</p> 
                             </div>
-
                         @else
-
                             <div class="flex hover:text-green-500">
                                 <form action="/retweets" method="POST">
                                     @csrf
@@ -133,9 +114,7 @@
                                 </form>
                                 <p class="pl-3">{{ $post->retweets->count() }}</p> 
                             </div>
-
                         @endif
-
                         <div x-data="{ like: false, count: {{ $post->likes }} }" class="flex hover:text-pink-600">
                             <div x-show="!like" x-on:click="like = ! like, count++" x-cloak >
                                 <input type="hidden" name="replies" >
@@ -147,7 +126,6 @@
                                     <p class="pl-3" x-text="count"></p> 
                                 </span>
                             </div>
-                         
                             <div x-show="like" x-on:click="like = ! like, count--" class="pink-color" x-cloak >
                                 <input class="custom-checkbox-input" name="like" type="checkbox hidden">
                                 <span class="custom-checkbox-text flex">
@@ -158,7 +136,6 @@
                                 </span>
                             </div>
                         </div>
-
                         <div x-data="{ share: false }" class="flex hover:text-cyan-500">
                             <div x-show="!share" x-on:click="share = ! share" x-cloak >
                                 <input type="hidden" name="replies" >
@@ -169,7 +146,6 @@
                                     </svg>                
                                 </span>
                             </div>
-                         
                             <div x-show="share" x-on:click="share = ! share" class="text-cyan-600" x-cloak >
                                 <input class="custom-checkbox-input" name="replies" type="checkbox hidden">
                                 <span class="custom-checkbox-text flex">
@@ -180,9 +156,8 @@
                             </div>
                         </div>                           
                     </div>
-            </article>
-        </a>
+                </article>
+            </a>
         @endforeach
     </div>
-    
 </x-layout>

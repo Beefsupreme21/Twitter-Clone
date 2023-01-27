@@ -1,4 +1,6 @@
-A twitter clone created to practice Laravel, Tailwind, and Alpine JS
+# Twitter clone
+
+This was created to practice Laravel, Tailwind, and Alpine JS
 
 <hr/>
   
@@ -20,14 +22,14 @@ A twitter clone created to practice Laravel, Tailwind, and Alpine JS
   
 - Enter your login credentials if you already have an account or use the Demo account
   
-  <img src="{{ asset('images/sign_in.png') }}" width="500" alt="Login Window" />
+  <img src="{{ asset('/images/sign_in.png') }}" width="500" alt="Login Window" />
 
   <br/>
   <br/>
   
 - Create your user account if you don't have an account
   
-  <img src="{{ asset('images/create.png') }}" width="500" alt="Signup Window" />
+  <img src="{{ asset('/images/create.png') }}" width="500" alt="Signup Window" />
 
   <br/>
   <br/>
@@ -37,14 +39,14 @@ A twitter clone created to practice Laravel, Tailwind, and Alpine JS
   
 - Like and retweet other tweets
 
-  <img src="{{ asset('images/like.png') }}" width="800" alt="Projects View (All Projects)" />
+  <img src="{{ asset('/images/like.png') }}" width="800" alt="Projects View (All Projects)" />
  
   <br/>
   <br/>
   
 - Leave a comment on a tweet
 
-  <img src="{{ asset('images/comment.png') }}" width="800" alt="Projects View (Completed Projects)" />  
+  <img src="{{ asset('/images/comment.png') }}" width="800" alt="Projects View (Completed Projects)" />  
  
   <br/>
   <br/>

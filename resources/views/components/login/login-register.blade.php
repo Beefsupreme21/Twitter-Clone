@@ -6,14 +6,12 @@
         <div class="fa-brands fa-twitter fa-2x pl-56"></div>
     </div>
 </div>
-
 <div class="w-2/4 mx-auto">
     <header class="">
         <h2 class="text-3xl font-semibold mb-6">
             Sign in to Twitter
         </h2>
     </header>
-
     <div class="mb-6 bg-white rounded py-2 px-4 text-black w-full rounded-3xl font-bold">
         <div class="flex items-center justify-center">
             <div class="img-background pr-2">
@@ -24,22 +22,16 @@
             </button>
         </div>
     </div>
-
-    <div class="mb-6 bg-white rounded py-2 px-4 text-black w-full rounded-3xl font-bold">
-        <div class="flex items-center justify-center">
-            <i class="fa-brands fa-apple fa-lg pr-2"></i>
-            <button>
-                Sign in with Apple
-            </button>
+    <a href="/login/demo">
+        <div class="mb-6 flex items-center justify-center bg-cyan-600 rounded py-2 px-4 text-black w-full rounded-3xl font-bold hover:bg-blue-500">
+            Sign in as Demo User
         </div>
-    </div>
-
+    </a>
     <div class="flex mb-4">
         <div class="border-b border-gray-800 mb-4 w-full"></div>
         <pre class="relative bottom-1"> or </pre>
         <div class="border-b border-gray-800 mb-4 w-full"></div>
     </div>
-
     <div class="mb-6">
         <input
             type="text"
@@ -52,23 +44,19 @@
             <p class="text-red-500 text-sm mt-1">{{$message}}</p>
         @enderror
     </div>
-    
     <div class="mb-6">
-        <button
-            class="bg-white rounded py-1.5 text-black w-full rounded-3xl font-bold"
-            @click="currentStep = 'password'"
-            @click.prevent
+        <button class="bg-white rounded py-1.5 text-black w-full rounded-3xl font-bold"
+            x-on:click="currentStep = 'password'"
+            x-on:click.prevent
         >
             Next
         </button>
     </div>
-
     <div class="mb-6">
         <button class="bg-black border border-gray-800 rounded py-1.5 text-white w-full rounded-3xl font-bold hover:bg-zinc-700">
             Forgot password?
         </button>
     </div>
-
     <div class="mt-8">
         <p class="text-sm text-gray-500">
             Don't have an account?
@@ -78,5 +66,3 @@
         </p>
     </div>
 </div>
-
-
