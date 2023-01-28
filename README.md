@@ -29,11 +29,13 @@ This was created to practice Laravel, Tailwind, and Alpine JS
   
 - Create your user account if you don't have an account
   
-  <img src="{{ asset('/images/create.png') }}" width="500" alt="Signup Window" />
+  <img src="{{ asset('images/rihanna.jpg') }}" width="500" alt="Signup Window" />
+  
 
   <br/>
   <br/>
   <br/>
+
   
 ### Projects
   
