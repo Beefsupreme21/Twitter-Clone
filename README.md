@@ -22,16 +22,15 @@ This was created to practice Laravel, Tailwind, and Alpine JS
   
 - Enter your login credentials if you already have an account or use the Demo account
   
-  <img src="{{ asset('/images/sign_in.PNG') }}" width="500" alt="Login Window" />
+  <img src="/images/sign_in.PNG" width="500" alt="Login Window" />
 
   <br/>
   <br/>
   
 - Create your user account if you don't have an account
   
-  <img src="{{ asset('images/rihanna.jpg') }}" width="500" alt="Signup Window" />
+  <img src="/images/create.png" width="500" alt="Signup Window" />
   
-
   <br/>
   <br/>
   <br/>
