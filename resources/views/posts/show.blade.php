@@ -10,14 +10,16 @@
             <div class="flex">
                 <a href="/users/{{ $post->user->name }}" class="flex">
                     <div class="w-12 rounded-full img-background">
-                        <img src="https://i.pravatar.cc/100?u={{ $post->user->id }}" class="rounded-full w-12 shrink-0" alt="">
+                        <img src="{{ $post->user->image ? asset('storage/images/'. $post->user->image) : 'https://i.pravatar.cc/100?u=' . $post->user->id }}" class="rounded-full w-12 shrink-0" alt="">
                     </div>
                     <div class="ml-2">
                         <div class="flex">
-                            <div class="font-bold hover:underline">{{ $post->user->name }}</div> 
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                            </svg>
+                            @if ($post->user->verified == 0) 
+                                <div class="font-bold hover:underline">{{ $post->user->name }}</div>  
+                            @else 
+                                <a href="/users/{{ $post->user->name }}" class="font-bold hover:underline">{{ $post->user->name }}</a> 
+                                <x-svg.verified class="w-6 h-6" /> 
+                            @endif
                         </div>
                         <div class="flex text-gray-400">
                             <p>@</p>
@@ -26,8 +28,8 @@
                     </div>
                 </a>
             </div>
-            <div x-data="{ open: false }" @click.away="open = false" class="relative h-min ">
-                <button @click="open = !open" class="rounded-full p-2 cursor-pointer hover:bg-gray-800">
+            <div x-data="{ open: false }" x-on:click.away="open = false" class="relative h-min ">
+                <button x-on:click="open = !open" class="rounded-full p-2 cursor-pointer hover:bg-gray-800">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                     </svg>   
@@ -40,20 +42,21 @@
                     x-transition:leave-start="transform opacity-100 scale-100" 
                     x-transition:leave-end="transform opacity-0 scale-95" 
                     class="origin-top-right absolute right-0 z-20 w-48 rounded-md shadow-lg">
-                    <div class="bg-white rounded-md shadow-xs">
-                        <div class="p-2">
-                            @if (auth()->user()->id == $post->user->id)
-                                <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900">Edit Tweet</a>
-                                <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900">Delete Tweet</a>
-                            @endif
-                            <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900">Report Tweet</a>
-                        </div>
+                    <div class="bg-white rounded-md shadow-xs p-2">
+                        <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900">Report Tweet</a>
+                        @if (auth()->user()->id == $post->user->id)
+                            <form method="POST" action="/posts/{{ $post->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                                    Delete Tweet
+                                </button>
+                            </form>
+                        @endif
                     </div>
                 </div>
-              </div>
-              
+            </div>
         </div>
-
         <article class="border-b border-x border-gray-700 py-3 text-white text-base">
             <div class="px-4">
                 <div class="px-2">
@@ -65,19 +68,15 @@
                 </div>
                 <div class="flex justify-around py-3 px-6 text-slate-400">
                     <div class="flex hover:text-cyan-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
-                        </svg>             
+                        <x-svg.comment class="w-6 h-6" />
                     </div>
                     <div class="flex hover:text-cyan-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                        </svg>          
+                        <x-svg.retweet class="w-6 h-6" />
                     </div>
                     <div class="flex hover:text-cyan-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                        </svg>       
+                        </svg>
                     </div>
                     <div class="flex hover:text-cyan-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -87,10 +86,8 @@
                 </div>
 
                 <div class="flex pl-2 pt-3 w-full border-t border-gray-700">
-                    <div>
-                        <div class="w-12 rounded-full img-background mr-6">
-                            <img src="{{asset('images/default_profile.png')}}" class="rounded-full w-12" alt="default profile picture">
-                        </div>
+                    <div class="w-12 rounded-full img-background mr-6">
+                        <img src="{{ auth()->user()->image ? asset('storage/images/'. auth()->user()->image) : asset('images/default_profile.png')}}" class="rounded-full w-12" alt="default profile picture">
                     </div>
                     <form action="/posts/{{$post->id}}/comments" method="POST">
                         @csrf
@@ -102,7 +99,6 @@
                                 placeholder="Tweet your reply"
                             />
                         </div>
-
                         <div class="flex justify-between pt-4">
                             <div class="flex">
                                 <div class="pr-4 text-sky-500">
@@ -127,10 +123,10 @@
             </div>
 
             <section>
-                @foreach ($post->comments as $comment)
+                @foreach ($post->comments->sortByDesc('created_at') as $comment)
                     <article class="flex p-4 border-t border-gray-700" >
                         <div class="mr-3 flex-shrink-0">
-                            <img src="https://i.pravatar.cc/100?u={{ $comment->user_id }}" class="rounded-full w-12 shrink-0" alt="">
+                            <img src="{{ $comment->user->image ? asset('storage/images/'. $comment->user->image) : 'https://i.pravatar.cc/100?u=' . $comment->user_id }}" class="rounded-full w-12 shrink-0" alt="">
                         </div>
                         <div>
                             <div class="pl-4">

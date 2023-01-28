@@ -5,10 +5,8 @@
         </div>
         <div class="flex border-b border-x border-gray-700 px-2 py-1 text-white">
             @auth
-                <div>
-                    <div class="w-12 rounded-full img-background">
-                        <img src="{{ auth()->user()->image ? asset('storage/images/'. auth()->user()->image) : asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
-                    </div>
+                <div class="w-12 rounded-full img-background">
+                    <img src="{{ auth()->user()->image ? asset('storage/images/'. auth()->user()->image) : asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
                 </div>
                 <div class="pl-2 pt-3 w-full">
                     <form action="/posts" method="POST">
@@ -46,10 +44,8 @@
                     </form>
                 </div>
             @else
-                <div>
-                    <div class="w-12 rounded-full img-background">
-                        <img src="{{asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
-                    </div>
+                <div class="w-12 rounded-full img-background">
+                    <img src="{{asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
                 </div>
                 <div class="pl-2 pt-3 w-full">
                     <form action="/" method="POST">
@@ -93,14 +89,12 @@
             <a href="/posts/{{$post->id}}">
                 <article class="border-b border-x border-gray-700 px-3 py-3 text-white text-base hover:bg-slate-800">
                     <div class="flex">
-                        <div>
-                            <div class="w-12 rounded-full img-background">
-                                @if ($post->user->image)
-                                    <img src="{{asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
-                                @else
-                                    <img src="https://i.pravatar.cc/100?u={{ $post->user->id }}" class="rounded-full w-12 shrink-0" alt="">
-                                @endif
-                            </div>
+                        <div class="w-12 rounded-full img-background">
+                            @if ($post->user->image)
+                                <img src="{{asset('images/default_profile.png')}}" class="rounded-full w-12" alt="">
+                            @else
+                                <img src="https://i.pravatar.cc/100?u={{ $post->user->id }}" class="rounded-full w-12 shrink-0" alt="">
+                            @endif
                         </div>
                         <div class="pl-4">
                             <div class="flex">
@@ -124,14 +118,14 @@
                     <div class="flex justify-around pt-4 px-6 text-slate-400">
                         @if ($post->comments->contains('user_id', auth()->id()))
                             <div class="flex text-cyan-500">
-                                <form action="/comments/{{ $post->comments->where('user_id', auth()->id())->first()->id }}" method="POST">
+                                <a href="/posts/{{$post->id}}">
                                     @csrf
-                                    @method('DELETE')
-                                    <button type="submit">
-                                        <x-svg.comment class="w-6 h-6" />
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                    <button type="submit" class="flex">
+                                        <x-svg.comment class="w-6 h-6" />       
+                                        <p class="pl-3">{{ $post->comments->count() }}</p> 
                                     </button>
-                                </form>
-                                <p class="pl-3">{{ $post->comments->count() }}</p> 
+                                </a>
                             </div>
                         @else
                             @auth 
@@ -139,21 +133,21 @@
                                     <a href="/posts/{{$post->id}}">
                                         @csrf
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <button type="submit">
-                                            <x-svg.comment class="w-6 h-6" />       
+                                        <button type="submit" class="flex">
+                                            <x-svg.comment class="w-6 h-6" />      
+                                            <p class="pl-3">{{ $post->comments->count() }}</p>  
                                         </button>
                                     </a>
-                                    <p class="pl-3">{{ $post->comments->count() }}</p> 
                                 </div>
                             @else
                                 <div class="flex hover:text-cyan-500">
                                     <a href="/login">
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <button type="submit">
+                                        <button type="submit" class="flex">
                                             <x-svg.comment class="w-6 h-6" />
+                                            <p class="pl-3">{{ $post->comments->count() }}</p> 
                                         </button>
                                     </a>
-                                    <p class="pl-3">{{ $post->comments->count() }}</p> 
                                 </div>
                             @endauth
                         @endif
@@ -163,11 +157,11 @@
                                 <form action="/retweets/{{ $post->retweets->where('user_id', auth()->id())->first()->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">
+                                    <button type="submit" class="flex">
                                         <x-svg.retweet class="w-6 h-6" />
+                                        <p class="pl-3">{{ $post->retweets->count() }}</p> 
                                     </button>
                                 </form>
-                                <p class="pl-3">{{ $post->retweets->count() }}</p> 
                             </div>
                         @else
                             @auth
@@ -175,21 +169,21 @@
                                     <form action="/retweets" method="POST">
                                         @csrf
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <button type="submit">
-                                            <x-svg.retweet class="w-6 h-6" />          
+                                        <button type="submit" class="flex">
+                                            <x-svg.retweet class="w-6 h-6" />   
+                                            <p class="pl-3">{{ $post->retweets->count() }}</p>        
                                         </button>
                                     </form>
-                                    <p class="pl-3">{{ $post->retweets->count() }}</p> 
                                 </div>
                             @else
                                 <div class="flex hover:text-green-500">
                                     <a href="/login">
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <button type="submit">
-                                            <x-svg.retweet class="w-6 h-6" />         
+                                        <button type="submit" class="flex">
+                                            <x-svg.retweet class="w-6 h-6" />    
+                                            <p class="pl-3">{{ $post->retweets->count() }}</p>     
                                         </button>
                                     </a>
-                                    <p class="pl-3">{{ $post->retweets->count() }}</p> 
                                 </div>
                             @endauth
                         @endif
@@ -199,13 +193,13 @@
                                 <form action="/likes/{{ $post->likes->where('user_id', auth()->id())->first()->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">
+                                    <button type="submit" class="flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="#F91880" viewBox="0 0 24 24" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                                         </svg>          
+                                        <p class="pl-3">{{ $post->likes->count() }}</p> 
                                     </button>
                                 </form>
-                                <p class="pl-3">{{ $post->likes->count() }}</p> 
                             </div>
                         @else
                             @auth 
@@ -213,26 +207,26 @@
                                     <form action="/likes" method="POST">
                                         @csrf
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <button type="submit">
+                                        <button type="submit" class="flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                            </svg>             
+                                            </svg>          
+                                            <p class="pl-3">{{ $post->likes->count() }}</p>    
                                         </button>
                                     </form>
-                                    <p class="pl-3">{{ $post->likes->count() }}</p> 
                                 </div>
                             @else
                                 <div class="flex hover:text-[#F91880]">
                                     <a href="/login">
                                         @csrf
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <button type="submit">
+                                        <button type="submit" class="flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                            </svg>             
+                                            </svg>          
+                                            <p class="pl-3">{{ $post->likes->count() }}</p>    
                                         </button>
                                     </a>
-                                    <p class="pl-3">{{ $post->likes->count() }}</p> 
                                 </div>
                             @endauth
                         @endif

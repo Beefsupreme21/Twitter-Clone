@@ -17,13 +17,11 @@
     <div class="whats-happening-background rounded-lg mt-4">
         <div>
             <p class="text-xl text-white font-bold p-4">What's happening</p>
-
-            <div class="hover:bg-slate-700 p-4">
+            <div class="hover:bg-slate-700 p-4 cursor-pointer">
                 <p class="text-slate-400 text-sm">Television · LIVE</p>
                 <p class="font-bold text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, harum.</p>
             </div>
-
-            <div class="hover:bg-slate-700 p-4">
+            <div class="hover:bg-slate-700 p-4 cursor-pointer">
                 <div class="flex">
                     <p class="font-bold text-white text-sm">Queen Elizabeth II</p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
@@ -31,11 +29,9 @@
                     </svg>
                     <p class="text-slate-400 text-sm"> · 2 hours ago</p>
                 </div>
-
                 <p class="font-bold text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus reiciendis tenetur ut?</p>
             </div>
-
-            <div class="hover:bg-slate-700 p-4">
+            <div class="hover:bg-slate-700 p-4 cursor-pointer">
                 <div class="flex text-sm items-center">
                     <img src="{{asset('images/wsj.jpg')}}" class="rounded-full w-5 h-5" alt="">
                     <p class="font-bold text-white">&nbsp;The Wall Street Journal</p>
@@ -44,15 +40,12 @@
                     </svg>
                     <p class="text-slate-400"> · Last night</p>
                 </div>
-
                 <p class="font-bold text-white">Investigation finds that chess grandmaster 'likely cheated' more than 100 times</p>
             </div>
         </div>
-
         <div class="hover:bg-slate-700 p-4">
             <a href="#" class="text-cyan-600 ">Show more</a>
         </div>
-
     </div>
 
     <div class="whats-happening-background rounded-lg mt-4">

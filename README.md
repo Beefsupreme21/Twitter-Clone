@@ -22,7 +22,7 @@ This was created to practice Laravel, Tailwind, and Alpine JS
   
 - Enter your login credentials if you already have an account or use the Demo account
   
-  <img src="{{ asset('/images/sign_in.png') }}" width="500" alt="Login Window" />
+  <img src="{{ asset('/images/sign_in.PNG') }}" width="500" alt="Login Window" />
 
   <br/>
   <br/>
